@@ -1,0 +1,190 @@
+﻿Experiment ID,Role
+CAMPAIGN-BO082-R01,Campaign potential trace reference
+CAMPAIGN-BO082-R03,Campaign potential trace reference
+CAMPAIGN-BO082-R04,Campaign potential trace reference
+CAMPAIGN-BO082-R05,Campaign potential trace reference
+CAMPAIGN-BO086-R02,Campaign potential trace reference
+CAMPAIGN-BO086-R03,Campaign potential trace reference
+CAMPAIGN-BO086-R04,Campaign potential trace reference
+CAMPAIGN-BO089-R01,Campaign potential trace reference
+CAMPAIGN-BO089-R02,Campaign potential trace reference
+CAMPAIGN-BO095-R01,Campaign potential trace reference
+CAMPAIGN-BO095-R02,Campaign potential trace reference
+LAB-5-35-CH1,Voltage-limit controls
+LAB-5-35-CH2,Voltage-limit controls
+LAB-5-35-CH3,Voltage-limit controls
+LAB-5-35-CH4,Voltage-limit controls
+LAB-7-69-CH1,Voltage-limit controls
+LAB-7-69-CH2,Voltage-limit controls
+LAB-7-69-CH3,Voltage-limit controls
+LAB-7-69-CH4,Voltage-limit controls
+LAB-8-20,Temperature controls
+LAB-8-21,Temperature controls
+LAB-8-22,Temperature controls
+LAB-8-54-FLOW,Extended operation
+LAB-8-57,EIS recovery
+LAB-8-58,EIS recovery
+LAB-8-60,BO82 electrochemical characterization
+SUP-BASELINE-COMP-R01,Cross-platform
+SUP-BASELINE-COMP-R01,Substitution controls
+SUP-BASELINE-COMP-R02,Cross-platform
+SUP-BASELINE-COMP-R02,Substitution controls
+SUP-BASELINE-COMP-R03,Cross-platform
+SUP-BASELINE-COMP-R03,Substitution controls
+SUP-BASELINE-CSV-R000002,Baseline procedure variability
+SUP-BASELINE-CSV-R000003,Baseline procedure variability
+SUP-BASELINE-CSV-R000004,Baseline procedure variability
+SUP-BASELINE-CSV-R000005,Baseline procedure variability
+SUP-BASELINE-CSV-R000006,Across-chamber Unfiltered solvent
+SUP-BASELINE-CSV-R000006,Baseline procedure variability
+SUP-BASELINE-CSV-R000007,Across-chamber Unfiltered solvent
+SUP-BASELINE-CSV-R000007,Baseline procedure variability
+SUP-BASELINE-CSV-R000008,Across-chamber Unfiltered solvent
+SUP-BASELINE-CSV-R000008,Baseline procedure variability
+SUP-BASELINE-CSV-R000009,Across-chamber Unfiltered solvent
+SUP-BASELINE-CSV-R000009,Baseline procedure variability
+SUP-BASELINE-CSV-R000010,Baseline procedure variability
+SUP-BASELINE-CSV-R000011,Baseline procedure variability
+SUP-BASELINE-CSV-R000012,Baseline procedure variability
+SUP-BASELINE-CSV-R000013,Baseline procedure variability
+SUP-BASELINE-CSV-R000015,Baseline procedure variability
+SUP-BASELINE-CSV-R000016,Baseline procedure variability
+SUP-BASELINE-CSV-R000017,Baseline procedure variability
+SUP-BASELINE-CSV-R000018,Baseline procedure variability
+SUP-BASELINE-CSV-R000019,Baseline procedure variability
+SUP-BASELINE-CSV-R000020,Baseline procedure variability
+SUP-BASELINE-CSV-R000021,Baseline procedure variability
+SUP-BASELINE-CSV-R000022,Baseline procedure variability
+SUP-BASELINE-CSV-R000024,Across-chamber Optimized
+SUP-BASELINE-CSV-R000024,Baseline procedure variability
+SUP-BASELINE-CSV-R000025,Across-chamber Optimized
+SUP-BASELINE-CSV-R000025,Baseline procedure variability
+SUP-BASELINE-CSV-R000026,Across-chamber Optimized
+SUP-BASELINE-CSV-R000026,Baseline procedure variability
+SUP-BASELINE-CSV-R000027,Across-chamber Optimized
+SUP-BASELINE-CSV-R000027,Baseline procedure variability
+SUP-BASELINE-CSV-R000032,Baseline procedure variability
+SUP-BASELINE-CSV-R000033,Baseline procedure variability
+SUP-BASELINE-CSV-R000034,Baseline procedure variability
+SUP-BASELINE-CSV-R000035,Baseline procedure variability
+SUP-BASELINE-CSV-R000036,Baseline procedure variability
+SUP-BASELINE-CSV-R000037,Baseline procedure variability
+SUP-BASELINE-CSV-R000038,Baseline procedure variability
+SUP-BASELINE-CSV-R000039,Baseline procedure variability
+SUP-BASELINE-CSV-R000048,Baseline procedure variability
+SUP-BASELINE-CSV-R000049,Baseline procedure variability
+SUP-BASELINE-CSV-R000050,Baseline procedure variability
+SUP-BASELINE-CSV-R000051,Baseline procedure variability
+SUP-BASELINE-CSV-R000052,Baseline procedure variability
+SUP-BASELINE-CSV-R000053,Baseline procedure variability
+SUP-BASELINE-CSV-R000054,Baseline procedure variability
+SUP-BASELINE-CSV-R000055,Baseline procedure variability
+SUP-BASELINE-CSV-R000056,Baseline procedure variability
+SUP-BASELINE-CSV-R000057,Baseline procedure variability
+SUP-BASELINE-CSV-R000058,Baseline procedure variability
+SUP-BASELINE-CSV-R000059,Baseline procedure variability
+SUP-BASELINE-CSV-R000077,Baseline procedure variability
+SUP-BASELINE-CSV-R000078,Baseline procedure variability
+SUP-BASELINE-CSV-R000079,Baseline procedure variability
+SUP-BASELINE-CSV-R000080,Baseline procedure variability
+SUP-BASELINE-CSV-R000081,Baseline procedure variability
+SUP-BASELINE-CSV-R000082,Baseline procedure variability
+SUP-BASELINE-CSV-R000083,Baseline procedure variability
+SUP-BASELINE-CSV-R000084,Baseline procedure variability
+SUP-BASELINE-CSV-R000102,Baseline procedure variability
+SUP-BASELINE-CSV-R000103,Baseline procedure variability
+SUP-BASELINE-CSV-R000104,Baseline procedure variability
+SUP-BASELINE-CSV-R000105,Baseline procedure variability
+SUP-BASELINE-CSV-R000107,Baseline procedure variability
+SUP-BASELINE-CSV-R000108,Baseline procedure variability
+SUP-BASELINE-CSV-R000109,Baseline procedure variability
+SUP-BASELINE-CSV-R000110,Baseline procedure variability
+SUP-BASELINE-CSV-R000113,Baseline procedure variability
+SUP-BASELINE-CSV-R000117,Baseline procedure variability
+SUP-BASELINE-CSV-R000220,Baseline procedure variability
+SUP-BASELINE-CSV-R000221,Baseline procedure variability
+SUP-BASELINE-CSV-R000222,Baseline procedure variability
+SUP-BASELINE-CSV-R000223,Baseline procedure variability
+SUP-BASELINE-CSV-R000224,Baseline procedure variability
+SUP-BASELINE-CSV-R000225,Baseline procedure variability
+SUP-BASELINE-CSV-R000226,Baseline procedure variability
+SUP-BASELINE-CSV-R000227,Baseline procedure variability
+SUP-BASELINE-CSV-R000228,Baseline procedure variability
+SUP-BASELINE-CSV-R000229,Baseline procedure variability
+SUP-BASELINE-CSV-R000230,Baseline procedure variability
+SUP-BASELINE-CSV-R000231,Baseline procedure variability
+SUP-BASELINE-CSV-R000232,Baseline procedure variability
+SUP-BASELINE-CSV-R000233,Baseline procedure variability
+SUP-BASELINE-CSV-R000234,Baseline procedure variability
+SUP-BASELINE-CSV-R000235,Baseline procedure variability
+SUP-BASELINE-CSV-R000236,Baseline procedure variability
+SUP-BASELINE-CSV-R000237,Baseline procedure variability
+SUP-BASELINE-CSV-R000238,Baseline procedure variability
+SUP-BASELINE-CSV-R000239,Baseline procedure variability
+SUP-BASELINE-CSV-R000240,Baseline procedure variability
+SUP-BASELINE-CSV-R000241,Baseline procedure variability
+SUP-BASELINE-CSV-R000242,Baseline procedure variability
+SUP-BASELINE-CSV-R000243,Baseline procedure variability
+SUP-BASELINE-CSV-R000277,Baseline procedure variability
+SUP-BASELINE-CSV-R000278,Baseline procedure variability
+SUP-BASELINE-CSV-R000279,Baseline procedure variability
+SUP-BASELINE-CSV-R000280,Baseline procedure variability
+SUP-BASELINE-CSV-R000438,Baseline procedure variability
+SUP-BASELINE-CSV-R000439,Baseline procedure variability
+SUP-BASELINE-CSV-R000440,Baseline procedure variability
+SUP-BASELINE-CSV-R000441,Baseline procedure variability
+SUP-BASELINE-CSV-R000442,Baseline procedure variability
+SUP-BASELINE-CSV-R000443,Baseline procedure variability
+SUP-BASELINE-CSV-R000444,Baseline procedure variability
+SUP-BASELINE-CSV-R000445,Baseline procedure variability
+SUP-BASELINE-GDE-R01,Cross-platform
+SUP-BASELINE-GDE-R02,Cross-platform
+SUP-BASELINE-GDE-R03,Cross-platform
+SUP-BASELINE-PRESSURE-R01,Cross-platform
+SUP-BASELINE-PRESSURE-R02,Cross-platform
+SUP-BASELINE-PRESSURE-R03,Cross-platform
+SUP-BO82-COMP-R01,Post-campaign validation
+SUP-BO82-COMP-R02,Post-campaign validation
+SUP-BO82-COMP-R03,Post-campaign validation
+SUP-BO86-COMP-R01,Cross-platform
+SUP-BO86-COMP-R01,Gas controls N2/H2
+SUP-BO86-COMP-R01,Post-campaign validation
+SUP-BO86-COMP-R01,Substitution controls
+SUP-BO86-COMP-R02,Cross-platform
+SUP-BO86-COMP-R02,Gas controls N2/H2
+SUP-BO86-COMP-R02,Post-campaign validation
+SUP-BO86-COMP-R02,Substitution controls
+SUP-BO86-COMP-R03,Cross-platform
+SUP-BO86-COMP-R03,Gas controls N2/H2
+SUP-BO86-COMP-R03,Post-campaign validation
+SUP-BO86-COMP-R03,Substitution controls
+SUP-BO86-GDE-R01,Cross-platform
+SUP-BO86-GDE-R02,Cross-platform
+SUP-BO86-GDE-R03,Cross-platform
+SUP-BO86-PRESSURE-R01,Cross-platform
+SUP-BO86-PRESSURE-R02,Cross-platform
+SUP-BO86-PRESSURE-R03,Cross-platform
+SUP-GAS-ARAR,Gas controls
+SUP-GAS-ARH2,Gas controls
+SUP-ISOTOPE-14N,Isotope controls
+SUP-ISOTOPE-15N,Isotope controls
+SUP-PROCEDURE-3-CH1,Across-chamber Electrolyte batches
+SUP-PROCEDURE-3-CH2,Across-chamber Electrolyte batches
+SUP-PROCEDURE-3-CH3,Across-chamber Electrolyte batches
+SUP-PROCEDURE-3-CH4,Across-chamber Electrolyte batches
+SUP-PROCEDURE-4-CH1,Across-chamber Uncalibrated MFCs
+SUP-PROCEDURE-4-CH2,Across-chamber Uncalibrated MFCs
+SUP-PROCEDURE-4-CH3,Across-chamber Uncalibrated MFCs
+SUP-PROCEDURE-4-CH4,Across-chamber Uncalibrated MFCs
+SUP-SUB-BASELINE-0p8M-R01,Substitution controls
+SUP-SUB-BASELINE-0p8M-R02,Substitution controls
+SUP-SUB-BASELINE-0p8M-R03,Substitution controls
+SUP-SUB-BASELINE-BuOH-R01,Substitution controls
+SUP-SUB-BASELINE-BuOH-R02,Substitution controls
+SUP-SUB-BASELINE-BuOH-R03,Substitution controls
+SUP-SUB-BO86-1M-R01,Substitution controls
+SUP-SUB-BO86-1M-R02,Substitution controls
+SUP-SUB-BO86-1M-R03,Substitution controls
+SUP-SUB-BO86-EtOH-R01,Substitution controls
+SUP-SUB-BO86-EtOH-R02,Substitution controls
+SUP-SUB-BO86-EtOH-R03,Substitution controls

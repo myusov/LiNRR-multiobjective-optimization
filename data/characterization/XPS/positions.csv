@@ -1,0 +1,3 @@
+﻿Location ID,Specimen ID,Condition,Position,Main Figure 5,Independent electrodes per formulation,Coordinate note
+BL-1,SPEC-XPS-BASELINE,Baseline,upper,True,1,Upper/lower location labels only; stage coordinates not recorded in plotting inputs
+BO-1,SPEC-XPS-BO86,Pareto condition #86,upper,True,1,Upper/lower location labels only; stage coordinates not recorded in plotting inputs

@@ -1,0 +1,19 @@
+﻿sample,condition,position_on_electrode,source_file,region,component_label,position_eV,FWHM_eV,exported_area,lineshape,source_column_1based,metadata_source_rows,sum_exported_region_area,fraction_of_existing_fit_area
+BL-1,BL,1,MY-BL-1_analysis.csv,C 1s,C_lowBE,285.0,1.12,1492.47,GL(30),3,1-5,3523.56,0.4235687770323196
+BL-1,BL,1,MY-BL-1_analysis.csv,C 1s,C_highBE,286.72,3.09,2031.09,GL(30),4,1-5,3523.56,0.5764312229676803
+BL-1,BL,1,MY-BL-1_analysis.csv,O 1s,O_highBE,535.37,2.58,1568.32,GL(30),10,1-5,3890.48,0.4031173531286628
+BL-1,BL,1,MY-BL-1_analysis.csv,O 1s,O_lowBE,533.06,2.28,2322.16,GL(30),11,1-5,3890.48,0.5968826468713373
+BL-1,BL,1,MY-BL-1_analysis.csv,F 1s,F_highBE,685.55,1.6,6009.42,GL(30),17,1-5,25925.14,0.2317989411050432
+BL-1,BL,1,MY-BL-1_analysis.csv,F 1s,F_lowBE,687.74,2.52,19915.72,GL(30),18,1-5,25925.14,0.7682010588949568
+BL-1,BL,1,MY-BL-1_analysis.csv,B 1s,B_lowBE,195.64,1.8,307.44,GL(30),24,1-5,504.88,0.6089367770559341
+BL-1,BL,1,MY-BL-1_analysis.csv,B 1s,B_highBE,193.21,1.72,197.44,GL(30),25,1-5,504.88,0.3910632229440659
+BL-1,BL,1,MY-BL-1_analysis.csv,Li 1s,Li_highBE,58.4,2.11,328.48,GL(30),31,1-5,581.21,0.5651657748490219
+BL-1,BL,1,MY-BL-1_analysis.csv,Li 1s,Li_lowBE,56.18,1.75,252.73,GL(30),32,1-5,581.21,0.4348342251509781
+BO-1,BO,1,MY-BO-1_analysis.csv,C 1s,C_lowBE,285.0,1.13,2650.16,GL(30),3,1-5,3933.44,0.6737512203058901
+BO-1,BO,1,MY-BO-1_analysis.csv,C 1s,C_highBE,286.61,1.37,1283.28,GL(30),4,1-5,3933.44,0.32624877969411
+BO-1,BO,1,MY-BO-1_analysis.csv,O 1s,O,532.98,1.76,4359.83,GL(30),10,1-5,4359.83,1.0
+BO-1,BO,1,MY-BO-1_analysis.csv,F 1s,F,687.52,1.99,16778.9,GL(30),16,1-5,16778.9,1.0
+BO-1,BO,1,MY-BO-1_analysis.csv,B 1s,B_highBE,195.78,1.6,816.76,GL(30),22,1-5,1102.84,0.7405970040985094
+BO-1,BO,1,MY-BO-1_analysis.csv,B 1s,B_lowBE,193.62,1.96,286.08,GL(30),23,1-5,1102.84,0.2594029959014907
+BO-1,BO,1,MY-BO-1_analysis.csv,Li 1s,Li,57.24,1.89,135.93,GL(30),29,1-5,135.93,1.0
+BO-1,BO,1,MY-BO-1_analysis.csv,N 1s,N,402.03,2.95,216.66,GL(30),35,1-5,216.66,1.0

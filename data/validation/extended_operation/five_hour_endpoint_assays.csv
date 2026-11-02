@@ -1,0 +1,10 @@
+﻿Experiment ID,Sample ID,file,compartment,time_min,final,dilution,label_override,blank,signal_AU,fc_calibration,assay_uM,concentration_uM,valid,flag,external_blank_span_uM
+LAB-8-54-FLOW,LAB-8-54-FLOW-AFINAL,afinal.csv,a,,True,1.0,False,mean external water blanks,-0.008890802768750001,low,0.7733473630079994,0.7733473630079994,True,in_range,0.022426538267283
+LAB-8-54-FLOW,LAB-8-54-FLOW-AFINAL,afinal.csv,a,,True,2.0,False,mean external water blanks,-0.016863914968750008,low,0.4405126553988873,0.8810253107977746,True,in_range,0.044853076534566
+LAB-8-54-FLOW,LAB-8-54-FLOW-AFINAL,afinal.csv,a,,True,8.0,False,mean external water blanks,-0.02235176686875,low,0.21142424716871,1.69139397734968,True,in_range,0.179412306138264
+LAB-8-54-FLOW,LAB-8-54-FLOW-DFINAL,dfinal.csv,d,,True,2.0,False,internal water,0.444877744,high,30.43487013998996,60.86974027997992,True,in_range,0.0
+LAB-8-54-FLOW,LAB-8-54-FLOW-DFINAL,dfinal.csv,d,,True,4.0,False,internal water,0.23900221300000002,high,16.768973605357424,67.0758944214297,True,in_range,0.0
+LAB-8-54-FLOW,LAB-8-54-FLOW-DFINAL,dfinal.csv,d,,True,8.0,False,internal water,0.11518254900000002,high,8.54989721022737,68.39917768181895,True,in_range,0.0
+LAB-8-54-FLOW,LAB-8-54-FLOW-EFINAL,efinal.csv,e,,True,20.0,False,mean external water blanks,0.48344922543124996,high,32.995222367700606,659.9044473540121,True,in_range,0.7132222796734702
+LAB-8-54-FLOW,LAB-8-54-FLOW-EFINAL,efinal.csv,e,,True,40.0,False,mean external water blanks,0.24217641833125003,high,16.97967548637184,679.1870194548735,True,in_range,1.4264445593469404
+LAB-8-54-FLOW,LAB-8-54-FLOW-EFINAL,efinal.csv,e,,True,80.0,False,mean external water blanks,0.11421111703125,high,8.485414128090852,678.8331302472682,True,in_range,2.8528891186938807
