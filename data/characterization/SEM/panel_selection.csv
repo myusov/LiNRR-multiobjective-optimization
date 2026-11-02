@@ -1,0 +1,15 @@
+﻿Panel ID,Figure,Selection array row,Selection array column,Image ID,Specimen ID,Scale bar (um),Panel row,Panel column,Packaged image,Archive ID,Original archive member
+SI-SEM-INDEPENDENT-R1-C1,SI independent pairs,1,1,SEM-S03-Standard_left_005.tif,SPEC-SEM-S03-BASELINE,20,1,1,original_images/session_03/Standard_left_005.tif,SEM-ARCHIVE-S03,Standard_left_005.tif
+SI-SEM-INDEPENDENT-R1-C2,SI independent pairs,1,2,SEM-S03-Pareto_top_porous_024.tif,SPEC-SEM-S03-BO86,20,1,2,original_images/session_03/Pareto_top_porous_024.tif,SEM-ARCHIVE-S03,Pareto_top_porous_024.tif
+SI-SEM-INDEPENDENT-R2-C1,SI independent pairs,2,1,SEM-S01-Basline_top_5000x_003.tif,SPEC-SEM-S01-BASELINE,20,2,1,original_images/session_01/Basline_top_5000x_003.tif,SEM-ARCHIVE-S01,Basline_top_5000x_003.tif
+SI-SEM-INDEPENDENT-R2-C2,SI independent pairs,2,2,SEM-S01-Pareto_top_5000x_009.tif,SPEC-SEM-S01-BO86,20,2,2,original_images/session_01/Pareto_top_5000x_009.tif,SEM-ARCHIVE-S01,Pareto_top_5000x_009.tif
+SI-SEM-INDEPENDENT-R3-C1,SI independent pairs,3,1,SEM-S02-Standard_top middle_2_001.tif,SPEC-SEM-S02-BASELINE,20,3,1,original_images/session_02/Standard_top middle_2_001.tif,SEM-ARCHIVE-S02,Standard_top middle_2_001.tif
+SI-SEM-INDEPENDENT-R3-C2,SI independent pairs,3,2,SEM-S02-Pareto_middle_019.tif,SPEC-SEM-S02-BO86,20,3,2,original_images/session_02/Pareto_middle_019.tif,SEM-ARCHIVE-S02,Pareto_middle_019.tif
+SI-SEM-SPATIAL-R1-C1,SI additional fields,1,1,SEM-S03-Standard_left_006.tif,SPEC-SEM-S03-BASELINE,100,1,1,original_images/session_03/Standard_left_006.tif,SEM-ARCHIVE-S03,Standard_left_006.tif
+SI-SEM-SPATIAL-R1-C2,SI additional fields,1,2,SEM-S03-Pareto_top_porous_025.tif,SPEC-SEM-S03-BO86,100,1,2,original_images/session_03/Pareto_top_porous_025.tif,SEM-ARCHIVE-S03,Pareto_top_porous_025.tif
+SI-SEM-SPATIAL-R2-C1,SI additional fields,2,1,SEM-S01-Basline_bottom_5000x_002.tif,SPEC-SEM-S01-BASELINE,20,2,1,original_images/session_01/Basline_bottom_5000x_002.tif,SEM-ARCHIVE-S01,Basline_bottom_5000x_002.tif
+SI-SEM-SPATIAL-R2-C2,SI additional fields,2,2,SEM-S01-Pareto_middle_5000x_015.tif,SPEC-SEM-S01-BO86,20,2,2,original_images/session_01/Pareto_middle_5000x_015.tif,SEM-ARCHIVE-S01,Pareto_middle_5000x_015.tif
+SI-SEM-SPATIAL-R3-C1,SI additional fields,3,1,SEM-S03-Standard_right_008.tif,SPEC-SEM-S03-BASELINE,20,3,1,original_images/session_03/Standard_right_008.tif,SEM-ARCHIVE-S03,Standard_right_008.tif
+SI-SEM-SPATIAL-R3-C2,SI additional fields,3,2,SEM-S03-Pareto_middle_035.tif,SPEC-SEM-S03-BO86,20,3,2,original_images/session_03/Pareto_middle_035.tif,SEM-ARCHIVE-S03,Pareto_middle_035.tif
+FIG5-R1-C2,Main Figure 5,1,1,SEM-S03-Standard_left_005.tif,SPEC-SEM-S03-BASELINE,20,1,2,original_images/session_03/Standard_left_005.tif,SEM-ARCHIVE-S03,Standard_left_005.tif
+FIG5-R2-C2,Main Figure 5,1,2,SEM-S03-Pareto_top_porous_024.tif,SPEC-SEM-S03-BO86,20,2,2,original_images/session_03/Pareto_top_porous_024.tif,SEM-ARCHIVE-S03,Pareto_top_porous_024.tif
