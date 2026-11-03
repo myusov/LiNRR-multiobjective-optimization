@@ -1,0 +1,81 @@
+# Manuscript defaults derived from Paper Figures_v9.ipynb.
+# Explicit artist settings in plotting code take precedence over these defaults.
+# Requires a working LaTeX installation with helvet and sfmath.
+# Figure geometry is a default only: set figsize explicitly for each figure.
+
+figure.figsize: 6.5, 4.333333333333333
+figure.dpi: 600
+figure.facecolor: white
+figure.edgecolor: white
+figure.autolayout: False
+figure.constrained_layout.use: False
+savefig.dpi: 600
+savefig.facecolor: white
+savefig.edgecolor: white
+savefig.transparent: False
+
+text.usetex: True
+text.latex.preamble: \usepackage{helvet}\usepackage{sfmath}\renewcommand{\familydefault}{\sfdefault}
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, DejaVu Sans
+font.size: 7
+font.weight: normal
+text.color: black
+axes.unicode_minus: True
+
+axes.facecolor: white
+axes.edgecolor: black
+axes.linewidth: 0.5
+axes.labelsize: 7
+axes.labelweight: normal
+axes.labelcolor: black
+axes.labelpad: 3
+axes.titlesize: 7
+axes.titleweight: normal
+axes.titlepad: 4
+axes.grid: False
+axes.spines.left: True
+axes.spines.bottom: True
+axes.spines.top: True
+axes.spines.right: True
+# Hex colors omit the leading hash because mplstyle uses it for comments.
+axes.prop_cycle: cycler('color', ['0072B2', 'D55E00', '009E73', 'CC79A7', 'E69F00', '56B4E9', '000000'])
+
+lines.linewidth: 0.5
+lines.linestyle: -
+lines.markersize: 4
+lines.markeredgewidth: 0.5
+scatter.marker: o
+errorbar.capsize: 2
+patch.linewidth: 0.5
+
+xtick.labelsize: 5
+ytick.labelsize: 5
+xtick.color: black
+ytick.color: black
+xtick.direction: out
+ytick.direction: out
+xtick.top: False
+ytick.right: False
+xtick.major.width: 0.5
+ytick.major.width: 0.5
+xtick.minor.width: 0.5
+ytick.minor.width: 0.5
+xtick.major.size: 3.5
+ytick.major.size: 3.5
+xtick.minor.size: 2
+ytick.minor.size: 2
+xtick.major.pad: 2
+ytick.major.pad: 2
+
+legend.fontsize: 7
+legend.title_fontsize: 7
+legend.frameon: False
+legend.numpoints: 1
+legend.scatterpoints: 1
+
+# Used only if text.usetex is explicitly disabled by the user.
+mathtext.fontset: dejavusans
+mathtext.default: it
+pdf.fonttype: 42
+ps.fonttype: 42
