@@ -1,23 +1,13 @@
-"""FE, rate and apparent electrical (pseudo-)energy efficiency.
-
-FE and pseudo-EE are percentages, not fractions. The 1.17 V output-energy
-reference is used at 298.15 K, as in the SI. Chemical input energies are excluded.
-No hydrogen-production voltage is added to the electrical-input denominator.
-"""
 from __future__ import annotations
 from dataclasses import dataclass
 import numpy as np
 
-FARADAY_C_MOL = 96485.0  # preserve original notebook constant
+FARADAY_C_MOL = 96485.0
 AMMONIA_REFERENCE_V = 1.17
 
 
 def pseudo_ee_percent(fe_percent, average_cell_voltage_V):
-    """Return FE(%) * 1.17 / positive mean voltage magnitude.
-
-    For varying current, supply the charge-weighted mean voltage W_el / Q,
-    not the arithmetic or unweighted time mean. Both inputs can be arrays.
-    """
+    """Return FE(%) * 1.17 / positive mean voltage magnitude."""
     fe, voltage = np.broadcast_arrays(np.asarray(fe_percent, dtype=float),
                                      np.asarray(average_cell_voltage_V, dtype=float))
     if not np.isfinite(fe).all() or not np.isfinite(voltage).all() or np.any(voltage <= 0):
@@ -26,12 +16,7 @@ def pseudo_ee_percent(fe_percent, average_cell_voltage_V):
 
 
 def electrical_input(time_s, current_mA, cell_voltage_V):
-    """Return (charge_C, electrical_energy_J) by trapezoidal CP integration.
-
-    Supply the recorded CP interval only; no OCV time is added. Current and
-    cell-voltage signs are converted to magnitudes for electrical-input accounting.
-    WE potential vs a reference alone is NOT a full-cell voltage.
-    """
+    """Return (charge_C, electrical_energy_J) by trapezoidal CP integration."""
     t = np.asarray(time_s, dtype=float)
     if t.ndim != 1 or len(t) < 2 or not np.isfinite(t).all() or np.any(np.diff(t) <= 0):
         raise ValueError("Provide at least two finite, strictly increasing CP timestamps.")
@@ -69,13 +54,7 @@ def calculate_performance(
     concentrations_uM, *, recovery_volume_mL: float, current_mA: float,
     electrode_area_cm2: float, duration_min: float, average_cell_voltage_V: float,
 ) -> PerformanceResult:
-    """Constant-current assay conversion preserving original FE/rate arithmetic.
-
-    Apply separately to each analytical concentration. The supplied voltage must
-    be a positive mean full-cell magnitude, not a signed electrode potential.
-    Background subtraction, if required, must be completed before this function.
-    Only the EE definition differs from Salicylate Method Script_v2.
-    """
+    """Constant-current assay conversion preserving original FE/rate arithmetic."""
     concentration = np.asarray(concentrations_uM, dtype=float)
     if not np.isfinite(concentration).all():
         raise ValueError("Concentrations must be finite.")

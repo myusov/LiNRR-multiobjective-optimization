@@ -1,18 +1,3 @@
-"""Salicylate ammonia quantification extracted from the original notebooks.
-
-Concentrations are in micromolar; absorbances are dimensionless. Analytical
-dispersion defaults to population SD (ddof=0), as in Salicylate Method Script_v2.
-No calibration, volume, or electrochemical uncertainty is added implicitly.
-
-The original wide CSV format contains a water-blank wavelength/absorbance pair,
-followed by wavelength/absorbance pairs for standards or sample dilutions.
-Blank subtraction is row-wise, followed by nearest-wavelength selection at
-650 and 475 nm; it is NOT spectral interpolation. Inputs are never modified.
-
-This module also accepts the numerical calibration signals already deposited
-in data/validation/extended_operation/five_hour_calibrations.csv. Their upstream
-blank processing is separate and must not be repeated here.
-"""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -64,12 +49,6 @@ def _vector(values: Sequence[float], name: str) -> np.ndarray:
 
 
 def read_uvvis_csv(path: str | Path) -> pd.DataFrame:
-    """Read the original two-header-row UV-vis export, using legacy preprocessing.
-
-    The first header line contains sample names; the second contains column
-    headings. Non-numeric fields are coerced to NaN, as in the notebook; needed
-    spectral values are subsequently validated by blank_corrected_signals.
-    """
     return (
         pd.read_csv(path, skiprows=1)
         .dropna(axis=1, how="all")
@@ -83,12 +62,7 @@ def blank_corrected_signals(
     high_wavelength_nm: float = 650.0,
     low_wavelength_nm: float = 475.0,
 ) -> np.ndarray:
-    """Return (A_high - A_low) after row-wise subtraction of the water blank.
-
-    Pair order is preserved and determines the corresponding order of calibration
-    concentrations or dilution factors. The nearest recorded wavelengths are
-    selected independently for each spectrum, matching the original notebook.
-    """
+    """Return (A_high - A_low) after row-wise subtraction of the water blank."""
     if spectra.shape[1] < 4 or spectra.shape[1] % 2:
         raise ValueError("Expected a blank pair followed by complete spectral pairs.")
     if not isinstance(spectra.index, pd.RangeIndex) or not spectra.index.equals(
@@ -165,13 +139,7 @@ def quantify_signals(
     signals_AU: Sequence[float], calibration: Calibration,
     dilution_factors: Sequence[float], *, ddof: int = 0,
 ) -> AssayResult:
-    """Invert the calibration and apply one TOTAL dilution factor per measurement.
-
-    Total factors include any preceding sample dilution. For example, a 50-fold
-    predilution followed by a 2-fold analytical dilution requires a factor of 100.
-    Negative blank-corrected estimates are retained, not silently set to zero.
-    No additional background or recovery correction is performed.
-    """
+    """Invert the calibration and apply one TOTAL dilution factor per measurement."""
     signal = _vector(signals_AU, "signals_AU")
     dilution = _vector(dilution_factors, "dilution_factors")
     if len(signal) != len(dilution) or np.any(dilution <= 0):
@@ -201,7 +169,6 @@ def quantify_uvvis_sample(
 def calibration_from_table(
     path: str | Path, calibration_id: str, *, style_path: str | Path | None = None,
 ) -> Calibration:
-    """Refit one calibration in the repository's five_hour_calibrations.csv schema."""
     table = pd.read_csv(path)
     selected = table.loc[table["Calibration ID"] == calibration_id]
     if selected.empty:
@@ -214,17 +181,11 @@ def calibration_from_table(
 def plot_calibration(
     calibration: Calibration, *, style_path: str | Path | None = None, ax=None,
 ):
-    """Plot using an explicitly supplied manuscript.mplstyle; never save a figure.
-
-    Uses styles/manuscript.mplstyle relative to this source checkout by default.
-    A different path can be supplied for an installed package. A missing style
-    raises an error rather than silently substituting different formatting.
-    """
     import matplotlib.pyplot as plt
 
     # Keep the LaTeX preamble active when the figure is later drawn or saved.
     if style_path is None:
-        style_path = Path(__file__).resolve().parents[2] / "styles/manuscript.mplstyle"
+        style_path = Path(__file__).resolve().parents[1] / "styles/manuscript.mplstyle"
     style_path = Path(style_path)
     if not style_path.is_file():
         raise FileNotFoundError(f"Manuscript style file not found: {style_path}")
