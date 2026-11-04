@@ -130,45 +130,80 @@ def plot_eis_recovery_comparison(frequency, metrics, selected):
 
 
 
+def estimate_pre_cp_resistance(spectrum):
+    """Fit constant real impedances by unweighted least squares (column means)."""
+    hf = spectrum.loc[spectrum.freq_Hz.between(2000, 11000)]
+    real = ["ReZ_ohm", "ReZ_ce_ohm", "ReZ_cell_ohm"]
+    imaginary = ["minusImZ_ohm", "minusImZ_ce_ohm", "minusImZ_cell_ohm"]
+    if len(hf) != 5 or not np.isfinite(hf[real + imaginary]).all().all():
+        raise ValueError("Expected five finite high-frequency impedance points.")
+    phase = np.degrees(np.arctan2(-hf[imaginary[2]], hf[real[2]]))
+    if (phase.abs() >= 5).any():
+        raise ValueError("High-frequency window is not predominantly resistive.")
+    for columns, rtol, atol in [(real, 2e-6, 0), (imaginary, 2e-5, 1e-3)]:
+        if not np.allclose(hf[columns[0]] + hf[columns[1]], hf[columns[2]],
+                           rtol=rtol, atol=atol):
+            raise ValueError("Electrode-side impedances do not sum to full-cell impedance.")
+    return hf[real].mean().rename(index=dict(zip(real, ["WE", "CE", "cell"])))
 
 
-def plot_eis_quality_context(frequency,metrics,selected):
-    fig,axes=plt.subplots(2,2,figsize=(6.5,6.5),dpi=600)
-    fig.subplots_adjust(left=.11,right=.96,bottom=.14,top=.94,wspace=.48,hspace=.52)
-    one=eis_frequency_points(frequency,1.0)
-    for condition in ['BL','BO86']:
-        color=_condition_color(condition)
-        m=metrics.loc[(metrics.condition==condition)&(metrics.stage!='pre')].copy()
-        time=(m.start_after_cp_s+m.end_after_cp_s)/120
-        axes[0,0].plot(time,m.HF_median/1000,'o-',color=color,ms=3,lw=.6)
-        d=one.loc[one.condition==condition]
-        axes[0,1].plot(d.time_after_cp_min,d.THD_E_pct,'o-',color=color,ms=3,lw=.6)
-        axes[0,1].plot(d.time_after_cp_min,d.NSD_E_pct,'s--',color=color,ms=2.5,lw=.6)
-        axes[1,0].plot(time,m.Emean_span_mV,'o-',color=color,ms=3,lw=.6)
-        scan=selected[condition]
-        axes[1,1].loglog(scan.freq_Hz,scan.Zabs_ohm/1000,'o-',color=color,ms=2,lw=.6)
-        flagged=(scan.THD_E_pct>EIS_SCREEN)|(scan.NSD_E_pct>EIS_SCREEN)
-        axes[1,1].loglog(scan.loc[flagged,'freq_Hz'],scan.loc[flagged,'Zabs_ohm']/1000,
-                         'o',mfc='white',mec=color,ms=3,mew=.6)
-    eis_style(axes[0,0],'Scan midpoint after interruption (min)',r'High-frequency proxy (k$\Omega$)','Working electrode')
-    eis_style(axes[0,1],'Time after current interruption (min)','Voltage THD / NSD (%)','Quality indicators at 1 Hz')
-    axes[0,1].axhline(EIS_SCREEN,color='.5',ls=':',lw=.5)
-    axes[0,1].text(.55,.94,'Solid: THD\nDashed: NSD',transform=axes[0,1].transAxes,fontsize=5,va='top')
-    eis_style(axes[1,0],'Scan midpoint after interruption (min)','WE potential span during scan (mV)','Within-scan potential variation')
-    eis_style(axes[1,1],'Frequency (Hz)',r'$|Z|$ (k$\Omega$)','Full measured frequency range, near 50 min')
-    for ax in axes.flat[:3]:ax.set_xlim(0,65);ax.set_ylim(bottom=0)
-    for ax in axes.flat:ax.set_title('')
-    eis_shared_legend(fig)
-    return fig,axes
-
-
+def analyze_bo82_voltage(data_dir=EIS_DATA):
+    """Calculate S11 resistance estimates, corrected potentials, and CP energy."""
+    numerical = Path(data_dir) / "numerical"
+    resistance = pd.DataFrame({
+        condition: estimate_pre_cp_resistance(pd.read_csv(
+            numerical / f"{condition}_02_PEIS.csv.gz"))
+        for condition in ("BL", "BO86", "BO82")
+    }).T
+    cp = pd.read_csv(numerical / "BO82_03_CP.csv.gz")
+    t = cp.time_s.to_numpy() - cp.time_s.iloc[0]
+    current = cp.I_meas_mA / 1000
+    we, ce = cp.Ewe_V, cp.Ece_mean_V
+    if (len(t) < 2 or not np.isfinite(cp[["time_s", "I_meas_mA", "Ewe_V",
+                                        "Ece_mean_V"]]).all().all()
+            or (np.diff(t) <= 0).any() or (current >= 0).any()
+            or (we.abs() >= 10).any() or (ce.abs() >= 10).any()
+            or ((cp["flags"].to_numpy(dtype=int) & 8) != 0).any()):
+        raise ValueError("BO-82 CP trace failed electrode-accounting checks.")
+    r = resistance.loc["BO82"]
+    cp["elapsed_s"] = t
+    cp["cell_voltage_V"] = ce - we
+    cp["we_corrected_V"] = we - current * r.WE
+    cp["ce_corrected_V"] = ce + current * r.CE
+    cp["ohmic_drop_V"] = -current * r.cell
+    cp["residual_voltage_V"] = cp.cell_voltage_V - cp.ohmic_drop_V
+    cp["electrical_power_W"] = -current * cp.cell_voltage_V
+    cp["ohmic_power_W"] = current**2 * r.cell
+    integrate = np.trapezoid if hasattr(np, "trapezoid") else np.trapz
+    electrical = integrate(cp.electrical_power_W, t)
+    ohmic = integrate(cp.ohmic_power_W, t)
+    summary = {
+        "CP span (s)": t[-1],
+        "Mean cell voltage (V)": integrate(cp.cell_voltage_V, t) / t[-1],
+        "Mean ohmic drop (V)": integrate(cp.ohmic_drop_V, t) / t[-1],
+        "Mean WE corrected (V vs Pt)": integrate(cp.we_corrected_V, t) / t[-1],
+        "Mean CE corrected (V vs Pt)": integrate(cp.ce_corrected_V, t) / t[-1],
+        "Electrical input (J)": electrical,
+        "Estimated ohmic energy (J)": ohmic,
+        "Estimated ohmic fraction (%)": 100 * ohmic / electrical,
+    }
+    return resistance, cp, summary
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--plot", action="store_true", help="Display both recovery figures.")
+    parser.add_argument("--plot", action="store_true", help="Display the recovery figure.")
     parser.add_argument("--no-tex", action="store_true", help="Use Matplotlib math text.")
+    parser.add_argument("--voltage-accounting", action="store_true",
+                        help="Report pre-CP resistances and BO-82 voltage accounting.")
     args = parser.parse_args()
+    if args.voltage_accounting:
+        resistance, _, summary = analyze_bo82_voltage()
+        print("Pre-CP resistance (ohm)")
+        print(resistance.to_string())
+        print(pd.Series(summary).to_string())
+        if not args.plot:
+            return
     data = load_eis_plot_data()
     one_hz = eis_frequency_points(data[0], 1.0)
     print(one_hz[["condition", "time_after_cp_min", "Zabs_ohm", "phase_deg", "Emean_V"]]
@@ -178,7 +213,6 @@ def main():
             if args.no_tex:
                 plt.rcParams["text.usetex"] = False
             plot_eis_recovery_comparison(*data)
-            plot_eis_quality_context(*data)
             plt.show()
 
 

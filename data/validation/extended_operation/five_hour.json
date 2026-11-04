@@ -1,0 +1,28 @@
+{
+  "initial_volume_mL": {
+    "e": 20.0502,
+    "a": 20.0
+  },
+  "aliquot_mL": 0.1,
+  "aliquot_diluted_mL": 5.0,
+  "final_diluted_mL": 200.0,
+  "duration_min": 300,
+  "current_density_mA_cm2": 16.347,
+  "area_cm2": 0.5,
+  "blank_files": [
+    "water.csv",
+    "water2.csv",
+    "water3.csv",
+    "water4.csv"
+  ],
+  "blank_delta_tolerance_AU": 0.001,
+  "blank_shape_rms_tolerance_AU": 0.002,
+  "blank_map": {},
+  "dilution_label_overrides": {
+    "a210min.csv": {
+      "2z": 2.0
+    }
+  },
+  "flow_mL_min": 1.0,
+  "recirculation_mode": "Closed loop; sampled aliquots not replaced"
+}

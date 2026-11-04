@@ -20,7 +20,7 @@ def read_inputs(root=None):
     """Read repository inputs; preserve CSV floating-point round trips."""
     root=Path(root).resolve() if root is not None else repository_root()
     directory=root/"data/validation/extended_operation"
-    config=json.loads((root/"configs/experiments/five_hour.json").read_text(encoding="utf8"))
+    config=json.loads((directory / "five_hour.json").read_text(encoding="utf8"))
     def read(name):return pd.read_csv(directory/name,float_precision="round_trip")
     calibration=read("five_hour_calibrations.csv")
     assays=pd.concat([read("five_hour_aliquot_assays.csv"),read("five_hour_endpoint_assays.csv")],ignore_index=True)
@@ -207,72 +207,6 @@ def analyze_extended_operation(cfg,calibration_points,assay_readings,blank_spect
                 readings=readings,samples=samples,qc=pd.DataFrame(qc),config=cfg,blank_checks=blank_checks)
 
 
-def fc_evaporation_sensitivity(results):
-    cfg=results['config']
-    inference=[]
-    profiles=[]
-    for kind in ['e','a']:
-        aliquots=results['samples'].loc[(results['samples']['compartment']==kind)
-            & ~results['samples']['final']].sort_values('time_min')
-        recovery=results['recovery'].set_index('compartment').loc[kind]
-        last=aliquots.iloc[-1]
-        c_last=float(last['concentration_uM'])
-        expected_final=cfg['initial_volume_mL'][kind]-len(aliquots)*cfg['aliquot_mL']
-        inferred_final=float(recovery['final_collection_umol'])/c_last*1000
-        extra_loss=expected_final-inferred_final
-        inference.append({'Compartment':kind,
-            'Initial inventory (mL)':cfg['initial_volume_mL'][kind],
-            'Aliquots withdrawn (mL)':len(aliquots)*cfg['aliquot_mL'],
-            'Expected final inventory without evaporation (mL)':expected_final,
-            'Last aliquot concentration (uM)':c_last,
-            'Final collected ammonia (umol)':recovery['final_collection_umol'],
-            'Inferred final inventory (mL)':inferred_final,
-            'Additional volume loss needed (mL)':extra_loss,
-            'Additional loss / expected final volume (%)':100*extra_loss/expected_final,
-            'Mean additional loss (mL/h)':extra_loss/(cfg['duration_min']/60),
-        })
-    inference=pd.DataFrame(inference)
-    electrolyte_loss=float(inference.set_index('Compartment').loc['e','Additional volume loss needed (mL)'])
-    for name,power,loss in [('No evaporation',1.,0.),('Early volume loss',.5,electrolyte_loss),
-                           ('Linear volume loss',1.,electrolyte_loss),('Late volume loss',2.,electrolyte_loss)]:
-        compartment_frames=[]
-        for kind in ['e','a']:
-            aliquots=results['samples'].loc[(results['samples']['compartment']==kind)
-                & ~results['samples']['final']].sort_values('time_min')
-            times=aliquots['time_min'].to_numpy()
-            concentration=aliquots['concentration_uM'].to_numpy()
-            removed=np.r_[0.,np.cumsum(concentration[:-1]*cfg['aliquot_mL']/1000)]
-            volume=cfg['initial_volume_mL'][kind]-np.arange(len(times))*cfg['aliquot_mL']
-            if kind=='e': volume=volume-loss*(times/cfg['duration_min'])**power
-            assert (volume>0).all()
-            background=concentration[0]*cfg['initial_volume_mL'][kind]/1000
-            amount=concentration*volume/1000+removed-background
-            compartment_frames.append(pd.DataFrame({'time_min':times,'net_NH3_umol':amount,
-                'compartment':kind,'volume_before_sampling_mL':volume,'scenario':name}))
-        profiles.append(pd.concat(compartment_frames,ignore_index=True))
-    components=pd.concat(profiles,ignore_index=True)
-    combined=components.groupby(['scenario','time_min'],as_index=False)['net_NH3_umol'].sum()
-    combined['FE_reservoirs_only_percent']=3*96485.33212*combined['net_NH3_umol']*1e-6/(
-        results['summary']['current_mA']/1000*combined['time_min'].replace(0,np.nan)*60)*100
-    # A diagnostic of whether uniform net electrolyte accumulation could fit
-    # the data under evaporation alone. A negative implied loss is incompatible
-    # with evaporation-only volume shrinkage under the other stated assumptions.
-    aliquots=results['samples'].loc[(results['samples']['compartment']=='e')
-        & ~results['samples']['final']].sort_values('time_min')
-    times=aliquots['time_min'].to_numpy()
-    concentration=aliquots['concentration_uM'].to_numpy()
-    removed=np.r_[0.,np.cumsum(concentration[:-1]*cfg['aliquot_mL']/1000)]
-    initial=cfg['initial_volume_mL']['e']
-    endpoint_e=results['recovery'].set_index('compartment').loc['e','recovered_net_umol']
-    target=endpoint_e*times/cfg['duration_min']
-    required_volume=(target+concentration[0]*initial/1000-removed)/concentration*1000
-    nominal=initial-np.arange(len(times))*cfg['aliquot_mL']
-    uniform_check=pd.DataFrame({'time_min':times,'No-evaporation volume (mL)':nominal,
-        'Volume required for uniform electrolyte NH3 accumulation (mL)':required_volume,
-        'Implied additional loss (mL)':nominal-required_volume})
-    return dict(inference=inference,components=components,combined=combined,
-                uniform_accumulation_check=uniform_check)
-
 def _plot_fc_manuscript(results, colors):
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
@@ -360,8 +294,6 @@ def _plot_fc_manuscript(results, colors):
 
 def run_extended_operation(root=None, *, exploratory=False, output_dir=None):
     result=analyze_extended_operation(*read_inputs(root))
-    if exploratory:
-        sensitivity=fc_evaporation_sensitivity(result)
     if output_dir is not None:
         destination=Path(output_dir)
         if not destination.is_absolute():destination=(Path(root) if root is not None else repository_root())/destination
@@ -389,7 +321,6 @@ def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',type=Path)
     parser.add_argument('--output-dir',type=Path)
-    parser.add_argument('--exploratory',action='store_true',help='Conditional volume-loss scenarios; no endpoint correction.')
     parser.add_argument('--plot',action='store_true',help='Display the manuscript figure without saving it.')
     parser.add_argument('--no-tex',action='store_true')
     args=parser.parse_args(argv)
