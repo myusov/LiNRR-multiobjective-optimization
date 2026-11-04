@@ -1,0 +1,3 @@
+Validation,Response,N conditions,RMSE,MAE,Mean signed error,R2,Error units
+"Fixed origin: train 1–64, test 65–80",FE,16,3.280683672012018,2.9128191092897904,2.8644998580790237,-3.0368159524560596,percentage points
+"Fixed origin: train 1–64, test 65–80",Derived rate,16,2.1326787438603607,1.8311136360250373,1.7996589613601395,-2.998744332024877,nmol s^-1 cm^-2

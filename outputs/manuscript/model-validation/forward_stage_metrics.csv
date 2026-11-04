@@ -1,0 +1,5 @@
+Validation,Response,N conditions,RMSE,MAE,Mean signed error,R2,Error units
+Next-batch validation: Stage 1: conditions 1–64,FE,48,5.37430187408271,4.385288758668764,1.332395204177078,0.357514495707674,percentage points
+Next-batch validation: Stage 1: conditions 1–64,Derived rate,48,1.2244508117390456,0.9490772405972496,0.22575581086960453,0.6549448560897071,nmol s^-1 cm^-2
+Next-batch validation: Stage 2: conditions 65–112,FE,48,5.394603532606568,3.7675774934158297,1.0723683034985352,0.7721576746347008,percentage points
+Next-batch validation: Stage 2: conditions 65–112,Derived rate,48,1.8475664856697687,1.3894005121860564,0.6320430756395153,0.839746264239725,nmol s^-1 cm^-2

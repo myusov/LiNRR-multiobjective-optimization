@@ -1,0 +1,12 @@
+Parameter,Value,Unit,Source,Source URL,Notes
+eta_thf,0.4593,mPa s,Mariano et al. (2000),https://doi.org/10.1590/S0104-66322000000400011,Neat-THF endpoint at 25 C used in manuscript notebook
+rho_1m,0.955,g/cm^3,Nguyen et al.,https://doi.org/10.1021/jacs.5c21059,Density of 1 M LiBF4/THF proxy; alcohol presence not established by viscosity table
+nu_1m_main,0.011,cm^2/s,Nguyen et al.; main text,https://doi.org/10.1021/jacs.5c21059,Retain main-text/SI discrepancy as separate scenarios
+nu_1m_si,0.012,cm^2/s,Nguyen et al.; Supporting Information,https://doi.org/10.1021/jacs.5c21059,Retain main-text/SI discrepancy as separate scenarios
+n2_thf,6.2,mM,Lazouski et al. (2019),https://doi.org/10.1016/j.joule.2019.02.003,Neat-THF endpoint at 25 C used in manuscript notebook
+n2_1m_low,2,mM,Lazouski et al. (2019),https://doi.org/10.1016/j.joule.2019.02.003,Lower scenario endpoint from reported 4 +/- 2 mM estimate; not a validated confidence bound
+n2_1m_central,4,mM,Lazouski et al. (2019),https://doi.org/10.1016/j.joule.2019.02.003,Central solubility proxy used in notebook
+n2_1m_high,6,mM,Lazouski et al. (2019),https://doi.org/10.1016/j.joule.2019.02.003,Upper scenario endpoint from reported 4 +/- 2 mM estimate; not a validated confidence bound
+reference_salt,1,M,Analysis definition,,Reference electrolyte concentration
+comparison_salt,0.8,M,Analysis definition,,Pareto condition salt concentration
+temperature,298.15,K,Analysis definition,,Reference temperature; this calculation does not model temperature dependence

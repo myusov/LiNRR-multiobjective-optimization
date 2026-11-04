@@ -1,0 +1,3 @@
+Validation,Response,N conditions,RMSE,MAE,Mean signed error,R2,Error units
+Expanding-window next-batch validation,FE,96,5.384462271563438,4.076433126042297,1.2023817538378065,0.6662897035443494,percentage points
+Expanding-window next-batch validation,Derived rate,96,1.5672877383139552,1.169238876391653,0.4288994432545599,0.827368561266437,nmol s^-1 cm^-2

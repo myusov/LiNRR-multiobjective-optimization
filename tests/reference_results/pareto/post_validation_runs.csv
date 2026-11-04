@@ -1,0 +1,7 @@
+Exp #,Validation run ID,Source,Total FE (%),Total rate (nmol/s/cm^2)
+BO-82,BO-82-post-1,Post-campaign compartment validation,45.855705841,8.758439815631
+BO-82,BO-82-post-2,Post-campaign compartment validation,41.862200558999994,7.995680306768999
+BO-82,BO-82-post-3,Post-campaign compartment validation,38.780085258,7.406996284278
+BO-86,BO-86-post-1,Post-campaign compartment validation,28.159207163999998,16.005693352017598
+BO-86,BO-86-post-2,Post-campaign compartment validation,30.546905261,17.3628609503524
+BO-86,BO-86-post-3,Post-campaign compartment validation,29.015418487999998,16.4923638685792

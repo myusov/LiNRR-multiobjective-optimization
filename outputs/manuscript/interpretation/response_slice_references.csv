@@ -1,0 +1,4 @@
+Condition number,Current density (mA/cm^2),THF (%),Total salt (M),LiBF4 fraction of salt,Total proton donor (M),BuOH fraction of donor,PrOH fraction of donor,Observed mean FE (%),Recorded mean rate (nmol/s/cm^2),Retained replicate count,Salt identity defined,Donor identity defined
+82,5.527,100.0,0.8,1.0,0.0299,1.0,0.0,43.95746,8.39345925,4.0,True,True
+86,16.347,100.0,0.8000000000000002,1.0,0.027399999999999997,1.0,0.0,31.808232333333336,17.963731,3.0,True,True
+Baseline,16.347,100.0,1.0,1.0,0.1,0.0,0.0,,,,,

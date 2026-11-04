@@ -1,0 +1,7 @@
+Validation,Response,N conditions,N covered,Coverage fraction,Mean interval width,Interval-width units
+Retrospective Pareto LOCO,FE,4,2,0.5,12.949435053988218,percentage points
+Retrospective Pareto LOCO,Derived rate,4,2,0.5,4.890430965439462,nmol s^-1 cm^-2
+Forward next-batch: Pareto conditions,FE,4,2,0.5,12.828589914172223,percentage points
+Forward next-batch: Pareto conditions,Derived rate,4,2,0.5,4.960911142614195,nmol s^-1 cm^-2
+"Fixed origin: train 1–64, test 65–80",FE,16,16,1.0,22.438329465109607,percentage points
+"Fixed origin: train 1–64, test 65–80",Derived rate,16,16,1.0,13.504903195110268,nmol s^-1 cm^-2

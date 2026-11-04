@@ -1,0 +1,8 @@
+Feature,Lower bound,Upper bound,OAT step
+Current density (mA/cm^2),1.0,20.0,0.9500000000000001
+THF (%),0.493,100.0,4.975350000000001
+LiBF4 concentration (M),0.0,2.0,0.1
+LiTFSI concentration (M),0.0,2.0,0.1
+BuOH concentration (M),0.0,0.15,0.0075
+PrOH concentration (M),0.0,0.125,0.00625
+EtOH concentration (M),0.0,0.15,0.0075

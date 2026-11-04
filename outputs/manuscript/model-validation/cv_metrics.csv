@@ -1,0 +1,4 @@
+Response,Evaluation unit,Number of conditions,RMSE,MAE,R2,RMSE and MAE unit
+Independent rate GP,Condition mean,112,1.532953798578957,0.990141301603262,0.8163333509284212,nmol s^-1 cm^-2
+FE-derived rate,Condition mean,112,1.3475880094640351,0.860199462449021,0.8580659985170336,nmol s^-1 cm^-2
+FE GP,Condition mean,112,4.146939604797298,3.0617881429126994,0.7766043566614741,percentage points

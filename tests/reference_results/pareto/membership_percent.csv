@@ -1,0 +1,5 @@
+Exp #,All successful campaign,All successful campaign + validation,IQR-filtered campaign,IQR-filtered campaign + validation
+BO-82,45.236,56.602,86.124,92.28
+BO-86,85.098,95.66,100.0,100.0
+BO-89,47.432,52.158,37.584,48.978
+BO-95,98.004,98.056,91.38,92.118

@@ -108,7 +108,6 @@ def audit_recorded_rate(data: pd.DataFrame, *, atol: float = 0.01, rtol: float =
     current = data[FEATURE_COLUMNS[0]].to_numpy(dtype=float)
     fe = data[FE_COLUMN].to_numpy(dtype=float)
     recorded = data[RATE_COLUMN].to_numpy(dtype=float)
-    # Preserve the notebook's multiplication order and units.
     factor = np.abs(current) * 1e-3 / (3 * AUDIT_FARADAY_CONSTANT) * 1e9 / 100.0
     calculated = fe * factor
     difference = recorded - calculated
