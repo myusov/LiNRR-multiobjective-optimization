@@ -75,8 +75,6 @@ def blank_corrected_signals(
     signals = []
     for column in range(2, spectra.shape[1], 2):
         wavelength = spectra.iloc[:, column]
-        # Original exports include textual footer rows, coerced to NaN by the
-        # reader. pandas idxmin skips these, exactly as in the notebook.
         if not np.isfinite(wavelength.to_numpy(dtype=float)).any():
             raise ValueError(f"No finite wavelengths in spectral pair {column // 2}.")
         high = (wavelength - high_wavelength_nm).abs().idxmin()
@@ -128,7 +126,6 @@ def fit_uvvis_calibration(
 
 
 def summarize_analytical(values: Sequence[float], *, ddof: int = 0) -> AnalyticalSummary:
-    """Return analytical mean and SD; default ddof=0 preserves the assay notebook."""
     array = _vector(values, "values")
     if not isinstance(ddof, (int, np.integer)) or not 0 <= ddof < len(array):
         raise ValueError("ddof must be an integer smaller than the measurement count.")

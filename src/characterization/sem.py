@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 
-FIGURE_NAMES={'independent':'SI independent pairs','spatial':'SI additional fields','main':'Main Figure 5'}
+FIGURE_NAMES={'independent':'SI independent pairs','spatial':'SI additional fields','main':'Main Figure 6'}
 
 @dataclass
 class SEMFrame:

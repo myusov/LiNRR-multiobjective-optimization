@@ -292,7 +292,7 @@ def _plot_fc_manuscript(results, colors):
         return fig
 
 
-def run_extended_operation(root=None, *, exploratory=False, output_dir=None):
+def run_extended_operation(root=None, *, output_dir=None):
     result=analyze_extended_operation(*read_inputs(root))
     if output_dir is not None:
         destination=Path(output_dir)
@@ -302,8 +302,6 @@ def run_extended_operation(root=None, *, exploratory=False, output_dir=None):
             if isinstance(value,pd.DataFrame):value.to_csv(destination/(name+'.csv'),index=False)
         public_summary={key:value for key,value in result['summary'].items() if key!='calibration_fits'}
         pd.DataFrame([public_summary]).to_csv(destination/'summary.csv',index=False)
-        if exploratory:
-            for name,value in result['exploratory'].items():value.to_csv(destination/('exploratory_'+name+'.csv'),index=False)
     return result
 
 
@@ -324,13 +322,12 @@ def main(argv=None):
     parser.add_argument('--plot',action='store_true',help='Display the manuscript figure without saving it.')
     parser.add_argument('--no-tex',action='store_true')
     args=parser.parse_args(argv)
-    result=run_extended_operation(args.root,exploratory=args.exploratory,output_dir=args.output_dir)
+    result = run_extended_operation(args.root, output_dir=args.output_dir)
     s=result['summary']
     print(f"Five-hour experiment: one independent electrolysis\nNet NH3: {s['recovered_net_umol']:.6f} umol")
     print(f"FE: {s['endpoint_FE_percent']:.6f} +/- {s['endpoint_FE_SD_percent']:.6f}%")
     print(f"Average rate: {s['average_rate_nmol_s_cm2']:.6f} +/- {s['average_rate_SD_nmol_s_cm2']:.6f} nmol s^-1 cm^-2")
     print('Uncertainties are propagated analytical SDs, not variation across electrolyses.')
-    if args.exploratory:print(result['exploratory']['inference'].to_string(index=False))
     if args.plot:
         plot_extended_operation(result,args.root,use_tex=False if args.no_tex else None)
         import matplotlib.pyplot as plt

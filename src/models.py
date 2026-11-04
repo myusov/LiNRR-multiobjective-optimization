@@ -18,7 +18,7 @@ try:
 except ImportError:
     from preprocessing import load_campaign, FEATURE_COLUMNS, TARGET_COLUMNS, CONDITION
 
-FARADAY_CONSTANT = 96485.33212  # preserve the manuscript notebook's derived-rate constant
+FARADAY_CONSTANT = 96485.33212
 ELECTRONS_PER_NH3 = 3
 CURRENT_DENSITY_COL = FEATURE_COLUMNS[0]
 FULL_FEATURE_COLS = list(FEATURE_COLUMNS)

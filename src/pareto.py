@@ -122,7 +122,6 @@ def post_campaign_bootstrap(
 
 
 def campaign_objectives(data):
-    """Adapt repository campaign rows to notebook IDs without reordering rows."""
     result = data[[CONDITION, *pareto_metrics]].copy()
     ids = result[CONDITION].to_numpy(dtype=float)
     if not np.isfinite(ids).all() or (ids < 1).any() or (ids != np.floor(ids)).any():
@@ -266,7 +265,6 @@ def main(argv=None):
                  seed=args.seed, output_dir=args.output_dir)
     print("Paired-electrolysis bootstrap membership (%):")
     print(tables["membership_percent"].to_string(index=False))
-    print("\nAdded-run rates preserve notebook approximate factors: #82=0.191, #86=0.5684.")
     if args.plot:
         plot_pareto_sensitivity(tables, args.root, use_tex=False if args.no_tex else None)
         import matplotlib.pyplot as plt

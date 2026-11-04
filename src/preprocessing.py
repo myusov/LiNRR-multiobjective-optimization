@@ -187,8 +187,6 @@ def load_campaign(root: str | Path | None = None, *, outlier_policy: str = "iqr"
     if (eligible[FEATURE_COLUMNS[0]] <= 0).any():
         raise ValueError("Repository campaign table must store positive cathodic current magnitudes.")
     eligible["IQR excluded"] = _booleans(eligible["IQR excluded"])
-    # Lexicographic BO-ID grouping reproduces the original notebook's training
-    # row order (BO-1, BO-10, BO-100, ...), not numeric condition order.
     eligible["Exp #"] = "BO-" + eligible[CONDITION].astype(str)
     filtered, excluded = remove_outliers_within_conditions(eligible, "Exp #", TARGET_COLUMNS)
     recomputed = eligible.index.isin(excluded.index)

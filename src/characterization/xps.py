@@ -114,28 +114,12 @@ def component_area_fractions(data):
     return result
 
 
-def spectral_quality(data):
-    """Report grid sizes and closure of exported envelope/component/background curves."""
-    records=[]
-    for (sample,region),d in data.spectra.items():
-        if sample not in SAMPLES:continue
-        curves=[x for x in d.columns[2:] if x not in ('Background','Envelope')]
-        closure=np.nan
-        if curves and 'Background' in d and 'Envelope' in d:
-            calculated=d[curves].sum(axis=1)-(len(curves)-1)*d['Background']
-            closure=float(np.max(np.abs(calculated-d['Envelope'])))
-        records.append({'sample':sample,'region':region,'spectral_points':len(d),
-                        'components':len(curves),'envelope_closure_max_CPS':closure})
-    return pd.DataFrame(records)
-
-
 def run_xps(root=None,*,output_dir=None):
     """Load and summarize data; export numerical tables on request."""
     data=load_xps(root)
     tables={'reported_atomic_percent':data.elemental.reset_index(),
             'atomic_ratios':elemental_ratios(data).reset_index(),
-            'component_area_fractions':component_area_fractions(data),
-            'spectral_quality':spectral_quality(data)}
+            'component_area_fractions':component_area_fractions(data)}
     if output_dir is not None:
         destination=Path(output_dir)
         if not destination.is_absolute():destination=(Path(root) if root is not None else repository_root())/destination
@@ -145,7 +129,6 @@ def run_xps(root=None,*,output_dir=None):
 
 
 class _XPSPlotter:
-    """Original notebook artists with figure state supplied explicitly."""
     def __init__(self):
         import matplotlib.pyplot as plt
         from matplotlib.lines import Line2D
