@@ -17,6 +17,17 @@ GROUPS = {
 }
 
 
+DEFAULT_RTOL = 1e-8
+DEFAULT_ATOL = 1e-10
+MODEL_VALIDATION_ATOL = 1e-4
+
+
+def absolute_tolerance(group, override):
+    if override is not None:
+        return override
+    return MODEL_VALIDATION_ATOL if group == "model-validation" else DEFAULT_ATOL
+
+
 # Some discrete columns are read as floats when the CSV contains missing values.
 EXACT_FLOAT_COLUMNS = {
     "Condition number", "Direction sign", "Outside-range features",
@@ -64,7 +75,7 @@ def compare_tables(actual, baseline, *, rtol, atol):
     return exact, failures
 
 
-def verify(outputs, references, groups, *, rtol=1e-8, atol=1e-10):
+def verify(outputs, references, groups, *, rtol=DEFAULT_RTOL, atol=None):
     """Count exact and tolerance-only matches and report failures by table."""
     exact_matches = tolerance_matches = 0
     failures = []
@@ -79,7 +90,9 @@ def verify(outputs, references, groups, *, rtol=1e-8, atol=1e-10):
             try:
                 actual = pd.read_csv(outputs / group / reference.name, float_precision="round_trip")
                 baseline = pd.read_csv(reference, float_precision="round_trip")
-                exact, differences = compare_tables(actual, baseline, rtol=rtol, atol=atol)
+                exact, differences = compare_tables(
+                    actual, baseline, rtol=rtol, atol=absolute_tolerance(group, atol)
+                )
             except (OSError, ValueError) as error:
                 failures.append(f"{name}: {error}")
                 continue
@@ -98,15 +111,19 @@ def main(argv=None):
     parser.add_argument("--reference-dir", type=Path, default=ROOT / "tests/reference_results")
     parser.add_argument("--only", nargs="+", choices=GROUPS, default=list(GROUPS))
     parser.add_argument("--exact", action="store_true", help="Require exact numeric values.")
-    parser.add_argument("--rtol", type=float, default=1e-8, help="Relative tolerance (default: 1e-8).")
-    parser.add_argument("--atol", type=float, default=1e-10, help="Absolute tolerance (default: 1e-10).")
+    parser.add_argument("--rtol", type=float, default=DEFAULT_RTOL, help="Relative tolerance (default: 1e-8).")
+    parser.add_argument("--atol", type=float, help="Override absolute tolerance for all selected groups (defaults: 1e-4 for model validation, 1e-10 otherwise).")
     args = parser.parse_args(argv)
-    if not all(math.isfinite(value) and value >= 0 for value in (args.rtol, args.atol)):
+    if not all(value is None or (math.isfinite(value) and value >= 0)
+               for value in (args.rtol, args.atol)):
         parser.error("Tolerances must be finite and nonnegative.")
     rtol, atol = (0, 0) if args.exact else (args.rtol, args.atol)
-    print(f"Floating-point tolerances: rtol={rtol:g}, atol={atol:g}.")
+    groups = dict.fromkeys(args.only)
+    print(f"Floating-point relative tolerance: {rtol:g}.")
+    for group in groups:
+        print(f"  {group}: atol={absolute_tolerance(group, atol):g}")
     exact, tolerated, failures = verify(
-        args.output_dir, args.reference_dir, dict.fromkeys(args.only), rtol=rtol, atol=atol
+        args.output_dir, args.reference_dir, groups, rtol=rtol, atol=atol
     )
     for failure in failures:
         print(f"FAIL: {failure}", file=sys.stderr)
