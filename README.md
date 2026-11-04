@@ -15,10 +15,10 @@ python -m venv .venv
 Activate the environment with `.venv\Scripts\Activate.ps1` in Windows PowerShell or `source .venv/bin/activate` on macOS or Linux. Then install the analysis dependencies.
 
 ```text
-python -m pip install numpy pandas scipy matplotlib torch botorch gpytorch shap scikit-learn pillow
+python -m pip install -r requirements.txt
 ```
 
-For the notebooks, also install `jupyterlab` and `ipykernel` and select the project environment as the kernel. Exact numerical verification can depend on package versions and platform.
+For the notebooks, select the project environment as the Jupyter kernel. Exact numerical verification can depend on the pakage and platform builds. The reference validation run used Python 3.11.3 and the CPU build of PyTorch 2.8.0.
 
 ## Reproduce the analysis
 

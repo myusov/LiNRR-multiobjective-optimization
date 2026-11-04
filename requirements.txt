@@ -1,0 +1,15 @@
+# Analysis and figure reproduction with Python 3.11
+numpy==2.4.4
+pandas==3.0.1
+scipy==1.17.1
+matplotlib==3.10.8
+torch==2.8.0
+botorch==0.17.0
+gpytorch==1.15.1
+shap==0.50.0
+scikit-learn==1.8.0
+Pillow==12.3.0
+
+# Interactive examples
+jupyterlab>=4,<5
+ipykernel>=6,<7
