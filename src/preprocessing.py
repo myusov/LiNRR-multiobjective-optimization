@@ -7,6 +7,11 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+if __package__:
+    from .performance import hydrogen_inclusive_ee_percent, pseudo_ee_percent
+else:
+    from performance import hydrogen_inclusive_ee_percent, pseudo_ee_percent
+
 CONDITION = "Condition number"
 REPLICATE = "Replicate number within condition"
 FEATURE_COLUMNS = (
@@ -208,15 +213,26 @@ def load_campaign(root: str | Path | None = None, *, outlier_policy: str = "iqr"
     counts = counts.reset_index()
     rate_audit = audit_recorded_rate(eligible)
     rate_audit["Retained after inclusion policy"] = eligible.index.isin(retained.index)
-    # Validate the deposited pseudo-EE without replacing it or reconstructing
-    # voltage from rounded FE/EE data a second time.
-    if {"Average cell voltage (V)", "Pseudo-EE (%)"}.issubset(eligible.columns):
-        v = eligible["Average cell voltage (V)"].to_numpy(dtype=float)
-        ee = eligible["Pseudo-EE (%)"].to_numpy(dtype=float)
-        if not np.isfinite(v).all() or np.any(v <= 0) or not np.isfinite(ee).all():
-            raise ValueError("Invalid deposited mean voltage or pseudo-EE.")
-        if not np.allclose(eligible[FE_COLUMN].to_numpy() * 1.17 / v, ee, rtol=1e-12, atol=1e-12):
-            raise ValueError("Deposited pseudo-EE differs from FE * 1.17 / mean voltage.")
+    # Check the deposited efficiencies to the precision of the CSV export.
+    efficiency_calculations = {
+        "Pseudo-EE (%)": pseudo_ee_percent,
+        "EE (%)": hydrogen_inclusive_ee_percent,
+    }
+    voltage_column = "Average cell voltage (V)"
+
+    for column, calculate in efficiency_calculations.items():
+        if column not in eligible.columns:
+            continue
+        if voltage_column not in eligible.columns:
+            raise ValueError(f"{column} requires {voltage_column}.")
+
+        fe = eligible[FE_COLUMN].to_numpy(dtype=float)
+        voltage = eligible[voltage_column].to_numpy(dtype=float)
+        deposited = eligible[column].to_numpy(dtype=float)
+        expected = calculate(fe, voltage)
+
+        if not np.allclose(deposited, expected, rtol=0, atol=3e-9):
+            raise ValueError(f"Deposited {column} differs from the calculated values.")
     return CampaignData(eligible, retained, excluded, model_rows, condition_means,
                         counts, rate_audit, consistency, history)
 

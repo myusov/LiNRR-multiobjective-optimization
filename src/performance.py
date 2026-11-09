@@ -14,6 +14,17 @@ def pseudo_ee_percent(fe_percent, average_cell_voltage_V):
         raise ValueError("FE must be finite and mean voltage magnitude positive and finite.")
     return AMMONIA_REFERENCE_V * fe / voltage
 
+def hydrogen_inclusive_ee_percent(fe_percent, average_cell_voltage_V):
+    """Estimate tandem-process efficiency (%) under constant-current operation.
+
+    Assumes hydrogen oxidation supplies all anodic charge and reversible
+    water electrolysis at 298.15 K supplies the hydrogen.
+    """
+    voltage = np.asarray(average_cell_voltage_V, dtype=float)
+    if not np.isfinite(voltage).all() or np.any(voltage <= 0):
+        raise ValueError("Mean cell-voltage magnitude must be positive and finite.")
+
+    return pseudo_ee_percent(fe_percent, voltage + 1.23)
 
 def electrical_input(time_s, current_mA, cell_voltage_V):
     """Return (charge_C, electrical_energy_J) by trapezoidal CP integration."""
