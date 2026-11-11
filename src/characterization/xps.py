@@ -230,7 +230,7 @@ class _XPSPlotter:
             ax.grid(False);ax.set_xlim(1200,0);ax.margins(y=.25)
             for energy,label in [(685,'F 1s'),(533,'O 1s'),(402,'N 1s'),(285,'C 1s'),(196,'B 1s'),(56,'Li 1s'),(32,'F 2s')]:
                 ax.axvline(energy,color='.6',ls=':',lw=.4,zorder=0)
-                ax.text(energy,({'Si 2s':.72,'Si 2p':.43,'F 2s':.27}.get(label,.88 if label not in ('B 1s','Li 1s') else .58)),label,
+                ax.text(energy,({'F 2s':.27}.get(label,.88 if label not in ('B 1s','Li 1s') else .58)),label,
                         transform=ax.get_xaxis_transform(),fontsize=5,ha='center',va='top')
         axes[-1].set_xlabel('Binding energy (eV)',fontsize=7)
         if legend: self.color_legend(fig)
