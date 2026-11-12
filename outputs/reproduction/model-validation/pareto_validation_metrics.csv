@@ -1,0 +1,5 @@
+Validation,Response,N conditions,RMSE,MAE,Mean signed error,R2,Error units
+Targeted retrospective LOCO: observed Pareto conditions,FE,4,8.715180258829488,7.68299596867508,-7.68299596867508,-2.27739383502886,percentage points
+Targeted retrospective LOCO: observed Pareto conditions,Derived rate,4,2.671246912543704,2.495709240132479,-2.495709240132479,0.38054490536586627,nmol s^-1 cm^-2
+Next-batch validation: observed Pareto conditions,FE,4,9.872042058632882,8.040980440183564,-8.040980440183564,-3.2052312003851373,percentage points
+Next-batch validation: observed Pareto conditions,Derived rate,4,2.915399089237533,2.558192198276298,-2.558192198276298,0.26213350524862333,nmol s^-1 cm^-2

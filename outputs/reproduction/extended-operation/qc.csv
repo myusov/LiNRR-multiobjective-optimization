@@ -1,0 +1,12 @@
+check,sample,detail
+dilution_disagreement,a0min.csv,Across-dilution SD exceeds 10% of mean; not independent replicate uncertainty.
+dilution_disagreement,a150min.csv,Across-dilution SD exceeds 10% of mean; not independent replicate uncertainty.
+dilution_disagreement,a240min.csv,Across-dilution SD exceeds 10% of mean; not independent replicate uncertainty.
+dilution_disagreement,a300min.csv,Across-dilution SD exceeds 10% of mean; not independent replicate uncertainty.
+dilution_disagreement,a30min.csv,Across-dilution SD exceeds 10% of mean; not independent replicate uncertainty.
+dilution_disagreement,afinal.csv,Across-dilution SD exceeds 10% of mean; not independent replicate uncertainty.
+endpoint_mass_balance,e,Final collection 134.528 umol; last aliquot predicts 163.171 umol remaining. Ratio=0.8245
+endpoint_mass_balance,a,Final collection 0.223051 umol; last aliquot predicts 1.00486 umol remaining. Ratio=0.222
+negative_net_recovery,a,Recovered amount is below starting background; retained without clipping.
+calibration_slope_ratio,low/high,Slope ratio 1.59; both standards are from other experiment dates.
+dilution_header_override,a210min.csv,2z interpreted as 2x; verify against lab notes.

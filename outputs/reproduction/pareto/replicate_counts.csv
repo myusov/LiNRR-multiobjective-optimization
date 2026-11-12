@@ -1,0 +1,17 @@
+Dataset,Exp #,Campaign n,Added validation n
+IQR-filtered campaign,BO-82,4,0
+IQR-filtered campaign,BO-86,3,0
+IQR-filtered campaign,BO-89,2,0
+IQR-filtered campaign,BO-95,2,0
+IQR-filtered campaign + validation,BO-82,4,3
+IQR-filtered campaign + validation,BO-86,3,3
+IQR-filtered campaign + validation,BO-89,2,0
+IQR-filtered campaign + validation,BO-95,2,0
+All successful campaign,BO-82,5,0
+All successful campaign,BO-86,4,0
+All successful campaign,BO-89,2,0
+All successful campaign,BO-95,2,0
+All successful campaign + validation,BO-82,5,3
+All successful campaign + validation,BO-86,4,3
+All successful campaign + validation,BO-89,2,0
+All successful campaign + validation,BO-95,2,0

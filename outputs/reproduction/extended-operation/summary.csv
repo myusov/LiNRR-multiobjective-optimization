@@ -1,0 +1,2 @@
+current_mA,charge_C,recovered_net_umol,endpoint_FE_percent,average_rate_nmol_s_cm2,endpoint_FE_SD_percent,average_rate_SD_nmol_s_cm2,water_blanks_shape_consistent,blank_delta_span_AU
+8.1735,147.123,148.6520848100707,29.246438231745024,16.516898312230076,0.46403855913577957,0.26206533710078117,True,0.000537231550000003

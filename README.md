@@ -18,7 +18,7 @@ Activate the environment with `.venv\Scripts\Activate.ps1` in Windows PowerShell
 python -m pip install -r requirements.txt
 ```
 
-For the notebooks, select the project environment as the Jupyter kernel. Exact numerical verification can depend on the pakage and platform builds. The reference validation run used Python 3.11.3 and the CPU build of PyTorch 2.8.0.
+For the notebooks, select the project environment as the Jupyter kernel. Exact numerical verification can depend on the package and platform builds. The reference validation run used Python 3.11.3 and the CPU build of PyTorch 2.8.0.
 
 ## Reproduce the analysis
 
